@@ -2,6 +2,16 @@ import type { Metadata } from "next";
 import { Inter, Barlow } from "next/font/google";
 import "./globals.css";
 import { ClientThemeProvider } from "./components/ClientThemeProvider";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
+
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,6 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} ${barlow.className}`} suppressHydrationWarning>
         <ClientThemeProvider>
@@ -32,5 +43,6 @@ export default function RootLayout({
         </ClientThemeProvider>
       </body>
     </html>
+    </ClerkProvider>
   );
 }
